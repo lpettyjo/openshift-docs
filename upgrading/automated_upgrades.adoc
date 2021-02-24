@@ -732,6 +732,23 @@ other nodes in their class (`app` versus `infra`), one at a time.
 
 . Upgrade the {product-title} nodes running GlusterFS one at a time.
 
+.. Add the following parameters in the inventory file at *_/etc/ansible/hosts_*:
++
+----
+openshift_storage_glusterfs_version=v<your_cns_version> <1>
+openshift_storage_glusterfs_block_version=v<your_cns_version>
+openshift_storage_glusterfs_heketi_version=v<your_cns_version>
+----
+<1> For '<your_cns_version>', specify the CNS version, such as *3.9* or *3.11.3*.
++
+.. Update the image tags from *latest* to '<your_cns_version>', such as *3.9* or *3.11.3*, on the following resources:
++
+----
+# oc edit -n <glusterfs_namespace> ds glusterfs-<name>
+# oc edit -n <glusterfs_namespace> dc heketi-<name>
+# oc edit -n <glusterfs_namespace> dc glusterblock-<name>-provisioner-dc
+----
++
 .. Add a label to the node you want to upgrade so that only one node is upgraded at a time:
 +
 ----
