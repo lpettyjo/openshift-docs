@@ -20,6 +20,12 @@ To create CSI-provisioned PVs that mount to GCP Filestore Storage assets, you in
 
 * The _GCP Filestore CSI driver_ enables you to create and mount GCP Filestore PVs.
 
+{product-title} GCP Filestore supports Workload Identity Federation (WIF). This allows users to access Google Cloud resources using federated identities instead of a service account key. 
+
+ifndef::openshift-dedicated[]
+To enable WIF support, see xref:../../installing/installing_gcp/installing-gcp-customizations.adoc#installing-gcp-with-short-term-creds_installing-gcp-customizations[Configuring a GCP cluster to use short-term credentials].
+endif::openshift-dedicated[]
+
 include::modules/persistent-storage-csi-about.adoc[leveloffset=+1]
 
 include::modules/persistent-storage-csi-gcp-file-install.adoc[leveloffset=+1]
