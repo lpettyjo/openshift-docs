@@ -204,3 +204,16 @@ Upgrading to {VirtProductName} 4.21 when using wasp-agent:: If you are upgrading
 
 +
 link:https://issues.redhat.com/browse/CNV-75837[CNV-75837]
+
+//CNV-78167
+Duplicate boot sources created after enabling multi-architecture imports::
+When you enable the `spec.featureGates.enableMultiArchBootImageImport` feature gate after boot sources have already been imported, {VirtProductName} recreates the boot source import resources using architecture-suffixed names, such as `fedora-amd64` or `fedora-arm64`.
++
+The original, non-suffixed boot source resources are not automatically removed and remain in the `openshift-virtualization-os-images` namespace. This results in duplicate boot sources appearing in the web console and CLI. These stale resources continue to consume storage space because the associated PVCs or `VolumeSnapshots` are retained.
++
+To work around this problem, manually delete the stale boot source resources:
++
+. Identify the currently active `DataSource` objects that resolve to the PVCs or `VolumeSnapshots` you want to keep.
+. Delete the older, non-suffixed `DataSource` objects and the PVCs or `VolumeSnapshots` they reference.
++
+link:https://issues.redhat.com/browse/CNV-75084[CNV-75084]
