@@ -98,6 +98,11 @@ With this update, cluster administrators can run a self-validation checkup on an
 +
 link:https://issues.redhat.com/browse/CNV-59284[CNV-59284]
 
+Web console *Reset* button now available::
+With this update, VM owners can force reboot their VMs by clicking *Reset* in the web console. This reboot process preserves user-customized data, such as hot plugged storage, by preserving the pod that contains the VM. This enhancement provides a more efficient and user-friendly experience, as users no longer need to manually manage the reboot process or risk losing their customized data.
++
+link:https://issues.redhat.com/browse/CNV-51003[CNV-51003]
+
 // Monitoring
 
 
