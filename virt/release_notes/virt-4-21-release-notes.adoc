@@ -105,7 +105,28 @@ link:https://issues.redhat.com/browse/CNV-51003[CNV-51003]
 
 // Monitoring
 
+New alerts in the {VirtProductName} runbooks::
+The following xref:../../virt/monitoring/virt-runbooks.adoc#virt-runbooks[alerts for the {CNVOperatorDisplayName}] are now included in the {VirtProductName} runbooks:
 
+* `DeprecatedMachineType`
+* `GuestFilesystemAlmostOutOfSpace`
+* `GuestVCPUQueueHighCritical`
+* `GuestVCPUQueueHighWarning`
+* `HCOGoldenImageWithNoArchitectureAnnotation`
+* `HCOGoldenImageWithNoSupportedArchitecture`
+* `HCOMultiArchGoldenImagesDisabled`
+* `HCOOperatorConditionsUnhealthy`
+* `HighNodeCPUFrequency`
+* `KubeVirtVMGuestMemoryAvailableLow`
+* `KubeVirtVMGuestMemoryPressure`
+* `PersistentVolumeFillingUp`
+* `VirtLauncherPodsStuckFailed`
+* `VirtualMachineInstanceHasEphemeralHotplugVolume`
+* `VirtualMachineStuckInUnhealthyState`
+* `VirtualMachineStuckOnNode`
+
++
+link:https://issues.redhat.com/browse/CNV-69069[CNV-69069]
 
 // Documentation improvements
 
