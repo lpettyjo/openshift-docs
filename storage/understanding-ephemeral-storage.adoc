@@ -1,8 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="understanding-ephemeral-storage"]
 = Understanding ephemeral storage
-include::_attributes/common-attributes.adoc[]
+:toc:
+:toc-title:
 :context: understanding-ephemeral-storage
+include::_attributes/common-attributes.adoc[]
+
+[role="_abstract"]
+Pods and containers are ephemeral or transient in nature and designed for stateless applications. Ephemeral storage allows administrators and developers to better manage the local storage for some of their operations.
 
 toc::[]
 
