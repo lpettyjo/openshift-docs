@@ -42,6 +42,10 @@ include::modules/persistent-storage-csi-gcp-pd-storage-class-ref.adoc[leveloffse
 
 include::modules/persistent-storage-csi-gcp-hyperdisk-limitations.adoc[leveloffset=+2]
 
+include::modules/persistent-storage-csi-gcp-hyperdisk-ha-overview.adoc[leveloffset=+2]
+
+For complete limit information, see link:https://docs.cloud.google.com/compute/docs/disks/hd-types/hyperdisk-balanced-ha#size_limits[Size and performance limits].
+
 include::modules/persistent-storage-csi-gcp-hyperdisk-storage-pools-overview.adoc[leveloffset=+2]
 
 To set up storage pools, see xref:../../storage/container_storage_interface/persistent-storage-csi-gcp-pd.adoc#persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure_persistent-storage-csi-gcp-pd[Setting up hyperdisk-balanced disks].
