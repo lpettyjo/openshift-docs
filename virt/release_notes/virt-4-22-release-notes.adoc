@@ -91,8 +91,10 @@ link:https://issues.redhat.com/browse/CNV-73301[CNV-73301]
 [role="_abstract"]
 Removed features are no longer supported in {VirtProductName}.
 
-
-
+Predefined latency checkup feature removed::
+In previous versions, cluster and project administrators could use a predefined latency checkup to verify network connectivity and measure latency between two virtual machines (VMs) that are attached to a secondary network interface. With this release, the predefined latency checkup feature is removed.
++
+link:https://issues.redhat.com/browse/CNV-77646[CNV-77646]
 
 [id="virt-4-22-technology-preview_{context}"]
 == Technology Preview features
