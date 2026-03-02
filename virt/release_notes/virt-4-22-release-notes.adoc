@@ -1,8 +1,8 @@
 :_mod-docs-content-type: ASSEMBLY
 include::_attributes/common-attributes.adoc[]
-[id="virt-4-21-release-notes"]
+[id="virt-4-22-release-notes"]
 = {VirtProductName} release notes
-:context: virt-4-21-release-notes
+:context: virt-4-22-release-notes
 
 [role="_abstract"]
 These release notes describe new features and enhancements, Technology Preview features, deprecated and removed features, fixed issues, and known issues for {VirtProductName} {VirtVersion}.
@@ -25,7 +25,7 @@ The SVVP certification applies to:
 * Red Hat Enterprise Linux CoreOS workers. In the Microsoft SVVP Catalog, they are named __Red{nbsp}Hat {product-title} 4.20__.
 * Intel and AMD CPUs.
 
-[id="virt-4-21-new_{context}"]
+[id="virt-4-22-new_{context}"]
 == New features and enhancements
 
 // Example release note format:
@@ -43,19 +43,12 @@ The SVVP certification applies to:
 
 
 // Virtualization
-{ibm-name} Secure Execution for VMs on {ibm-z-name} and {ibm-linuxone-name} is generally available::
-{ibm-name} Secure Execution for VMs on {ibm-z-name} and {ibm-linuxone-name} is now generally available. This capability provides hardware based memory encryption that protects virtual machine workloads from access by the host or hypervisor environment. For more information, see xref:../../virt/creating_vm/virt-configuring-ibm-secure-execution-vms-ibm-z.adoc#virt-configuring-ibm-secure-execution-vms-ibm-z[Configuring {ibm-name} Secure Execution virtual machines on {ibm-z-name} and {ibm-linuxone-name}].
+
 
 
 // Networking
-Custom MAC pool range configuration:: With this update, cluster administrators can specify a custom MAC pool range for a {VirtProductName} environment, preventing potential MAC address conflicts with other virtualization solutions on the same network. This gives cluster administrators more control over network resources, ensuring greater network stability and resource management efficiency.
-+
-link:https://issues.redhat.com/browse/CNV-63212[CNV-63212]
 
-Import VMs into {VirtProductName} while maintaining their previously assigned IP and MAC addresses::
-With this update, you can import VMs into {VirtProductName}, preserving their original IP and MAC addresses when connected to custom, primary layer 2 networks. This enhancement streamlines the import process, ensuring network consistency and a seamless transition of VMs, resulting in minimal disruption.
-+
-link:https://issues.redhat.com/browse/CNV-61227[CNV-61227]
+
 
 // Storage
 
@@ -63,23 +56,7 @@ link:https://issues.redhat.com/browse/CNV-61227[CNV-61227]
 
 // Web console
 
-Enhancements for the virtual machines *Search* menu::
-With this update, the search interface is enhanced, making it more noticeable and user-friendly. A prominent *Search* button and an advanced search option are introduced, allowing users to initiate a search with either the primary button or the *Enter* key. This streamlines the user experience and improves overall search functionality.
-+
-link:https://issues.redhat.com/browse/CNV-70130[CNV-70130]
 
-New flag introduced to prevent unintentional VNC disconnects:: A new, optional `--preserve-session` flag has been introduced for VMs. This flag prevents an existing VNC console connection from being disconnected if you attempt to start a new session.
-+
-If you attempt to create a second connection to the VNC console by using the `virtctl` CLI when this flag is set, an error is displayed and the connection fails.
-+
-If you attempt to create a second connection to the VNC console by using the web console, a warning is displayed, and you are prompted to disconnect the existing session before you create the new session.
-+
-link:https://issues.redhat.com/browse/CNV-66115[CNV-66115]
-
-Starting a virtual machine console from the tree-view::
-You can now start a virtual machine (VM) console session by clicking on the name of the running VM in the navigation panel, and then selecting *Open Console*.
-+
-link:https://issues.redhat.com/browse/CNV-70942[CNV-70942]
 
 // Monitoring
 
@@ -94,8 +71,7 @@ link:https://issues.redhat.com/browse/CNV-70942[CNV-70942]
 
 
 
-
-[id="virt-4-21-deprecated_{context}"]
+[id="virt-4-22-deprecated_{context}"]
 == Deprecated features
 
 The `HotplugVolume` feature gate is deprecated::
@@ -109,20 +85,16 @@ The `HotplugVolume` feature gate, which allows you to add storage without restar
 
 link:https://issues.redhat.com/browse/CNV-73301[CNV-73301]
 
-[id="virt-4-21-removed_{context}"]
+[id="virt-4-22-removed_{context}"]
 == Removed features
 
 [role="_abstract"]
 Removed features are no longer supported in {VirtProductName}.
 
-Legacy virtctl ssh target syntax removed::
-With this release, support for the `virtctl ssh type/name[.namespace]` target syntax has been removed. You must specify the target by using an explicit resource type, such as `vmi/<name>` or `vm/<name>`. Scripts and automation that rely on the removed syntax must be updated.
 
-// CNV-71950
-Support for `kubevirt-virtctl` RPM removed::
-With this release, support for the RHEL 8 `kubevirt-virtctl` RPM is removed and no longer supported.
 
-[id="virt-4-21-technology-preview_{context}"]
+
+[id="virt-4-22-technology-preview_{context}"]
 == Technology Preview features
 
 [role="_abstract"]
@@ -142,17 +114,17 @@ You can now configure a custom video device type when creating a virtual machine
 +
 link:https://issues.redhat.com/browse/CNV-71192[CNV-71192]
 
-//[id="virt-4-21-bug-fixes_{context}"]
+//[id="virt-4-22-bug-fixes_{context}"]
 //== Fixed issues
 
-[id="virt-4-21-known-issues_{context}"]
+[id="virt-4-22-known-issues_{context}"]
 == Known issues
 
 [role="_abstract"]
 Some linked Jira tickets are accessible only with Red Hat credentials.
 
 //CNV-38746: According to Petr, this will remain relevant as long as 4.12 is available. Anyone upgrading from 4.12 could be affected. Version 4.12 is supported until January 2026
-[id="virt-4-21-ki-networking_{context}"]
+[id="virt-4-22-ki-networking_{context}"]
 VMs using the cnv-bridge CNI fail to live migrate after updates from 4.12::
 When you update from {product-title} 4.12 to a newer minor version, virtual machines that use the `cnv-bridge` Container Network Interface (CNI) fail to live migrate. As a consequence, live migration fails for affected VMs.
 +
@@ -169,7 +141,7 @@ To work around this problem, when you install {SMProductShortName} for integrati
 link:https://issues.redhat.com/browse/OSSM-10883[OSSM-10883]
 
 //CNV-38543: According to Stu, this remains an issue in 4.21
-[id="virt-4-21-ki-nodes_{context}"]
+[id="virt-4-22-ki-nodes_{context}"]
 Node labels remain after uninstalling {VirtProductName}::
 Uninstalling {VirtProductName} does not remove the `feature.node.kubevirt.io` node labels that {VirtProductName} creates. As a consequence, nodes can still appear as if they are configured for virtualization workloads.
 +
@@ -178,7 +150,7 @@ To work around this problem, manually remove the `feature.node.kubevirt.io` labe
 link:https://issues.redhat.com/browse/CNV-38543[CNV-38543]
 
 //CNV-61066: According to Kedar, this remains an issue in 4.21
-[id="virt-4-21-ki-virtualization_{context}"]
+[id="virt-4-22-ki-virtualization_{context}"]
 Live migration fails when VM names exceed 47 characters::
 Live migration fails if a virtual machine name exceeds 47 characters. As a consequence, you cannot live migrate VMs with longer names.
 +
