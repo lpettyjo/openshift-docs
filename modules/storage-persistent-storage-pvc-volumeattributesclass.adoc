@@ -8,9 +8,7 @@
 = Volume Attributes Classes
 
 [role="_abstract"]
-Volume Attributes Classes provide a way for administrators to describe "classes" of storage they offer. These different classes can correspond to different quality-of-service levels. You can then apply Volume Attributes Classes to a persistent volume claim (PVC). If needed, you can apply new Volume Attributes Classes that become available in the cluster to the PVC.
-
-You can assign a VolumeAttributesClass to a persistent volume claim to modify storage performance characteristics such as IOPS or throughput. This update does not require volume reprovisioning or application downtime and allows on-demand performance tuning for supported storage providers.
+Volume Attributes Classes enable dynamic modification of storage performance, such as IOPS and throughput, on persistent volume claims without reprovisioning or downtime. Administrators define classes representing quality-of-service levels, and users apply them for on-demand performance tuning.
 
 == Limitations
 Volume Attributes Classes have the following limitations:
@@ -51,43 +49,47 @@ You can modify a Volume Attributes Class on a PVC at any time. However, if a Vol
 
 The following is an example Volume Attributes Class YAML file for AWS EBS.
 
-.`VolumeAttributesClass` AWS EBS definition example
+.Example `VolumeAttributesClass` AWS EBS definition
 [source,yaml]
 ----
 apiVersion: storage.k8s.io/v1
-kind: VolumeAttributesClass <1>
+kind: VolumeAttributesClass
 metadata:
-  name: silver <2>
-driverName: ebs.csi.aws.com <3>
+  name: silver
+driverName: ebs.csi.aws.com
 parameters:
   iops: "300"
   throughput: "125" 
-  type: io2 <4>
+  type: io2
   ...
 ----
-<1> Defines object as Volumes Attributes Classes.
-<2> Name of the `VolumeAttributesClass`. In this example, it is "silver".
-<3> The provisioner that determines what volume plugin is used for provisioning persistent volumes (PVs). In this example, it is "ebs.csi.aws.com" for AWS EBS.
-<4> Disk type.
+Where:
+
+* `kind`: Defines object as Volumes Attributes Classes.
+* `metadata.Name`: of the `VolumeAttributesClass`. In this example, it is "silver".
+* `driverName`: The provisioner that determines what volume plugin is used for provisioning persistent volumes (PVs). In this example, it is "ebs.csi.aws.com" for AWS EBS.
+* `parameters.type`: Disk type.
 
 The following is an example Volume Attributes Class YAML file for GPC PD.
 
-.`VolumeAttributesClass` GPC PD definition example
+.Example `VolumeAttributesClass` GPC PD definition
 [source,yaml]
 ----
 apiVersion: storage.k8s.io/v1
-kind: VolumeAttributesClass <1>
+kind: VolumeAttributesClass
 metadata:
-  name: silver <2>
-driverName: pd.csi.storage.gke.io <3>
+  name: silver
+driverName: pd.csi.storage.gke.io
 parameters:
   iops: "3000"
   throughput: "150Mi"
   ...
 ----
-<1> Defines object as Volumes Attributes Classes.
-<2> Name of the `VolumeAttributesClass`. In this example, it is "silver".
-<3> The provisioner that determines what volume plugin is used for provisioning persistent volumes (PVs). In this example, it is "pd.csi.storage.gke.io" for GPC PD.
+Where:
+
+* `kind`: Defines object as Volumes Attributes Classes.
+* `metadata.Name`: Name of the `VolumeAttributesClass`. In this example, it is "silver".
+* `driverName`: The provisioner that determines what volume plugin is used for provisioning persistent volumes (PVs). In this example, it is "pd.csi.storage.gke.io" for GPC PD.
 
 == Applying a Volume Attributes Class to a PVC
 In addition to newly created PVCs, you can also update existing bound PVCs with a Volume Attributes Class.
@@ -96,7 +98,7 @@ To apply a Volume Attributes Class to a PVC:
 
 * Set the PVC's `volumeAttributesClassName` parameter to the Volume Attributes Class's name:
 +
-.PVC definition example specifying a Volume Attributes Class 
+.Example
 +
 [source,yaml]
 ----
@@ -106,9 +108,12 @@ metadata:
   name: test-pv-claim
 spec:
   …
-  volumeAttributesClassName: silver <1>
+  volumeAttributesClassName: silver
 ----
-<1> Specifies using the Volume Attributes Class "silver" for this PVC.
++
+Where:
++
+* `spec.volumeAttributesClassName`: Specifies using the Volume Attributes Class "silver" for this PVC.
 
 == Deleting Volume Attributes Classes
 You cannot delete a Volume Attributes Class while it is in use by PVCs. 
@@ -121,11 +126,12 @@ To delete a Volume Attributes Class:
 +
 [source,terminal]
 ----
-$ oc get pvc -A -o jsonpath='{range .items[?(@.spec.volumeAttributesClassName=="<vac-name>")]}{.metadata.name}{"\n"}{end}' <1>
+$ oc get pvc -A -o jsonpath='{range .items[?(@.spec.volumeAttributesClassName=="<vac-name>")]}{.metadata.name}{"\n"}{end}'
 ----
-<1> <vac-name> = Volume Attributes Class name
 +
-.Sample command output
+Where `<vac-name>` is the Volume Attributes Class name.
++
+.Example command output
 [source, terminal]
 ----
 $ mypvc
@@ -133,9 +139,9 @@ $ mypvc
 
 . Then either:
 +
-* Specify a different Volume Attributes Class name in the PVC’s `volumeAttributesClassName` parameter:
+* Specify a different Volume Attributes Class name in the PVC's `volumeAttributesClassName` parameter:
 +
-.PVC definition example specifying a Volume Attributes Class
+.Example PVC definition specifying a Volume Attributes Class
 [source,yaml]
 ----
 apiVersion: v1
@@ -144,9 +150,10 @@ metadata:
 name: mypvc
 spec:
 …
-volumeAttributesClassName: silver <1>
+volumeAttributesClassName: silver
 ----
-<1> Specify a different Volume Attributes Class. In this example, "silver".
++
+* For `spec.volumeAttributesClassName`, specify a different Volume Attributes Class. In this example, "silver".
 +
 Or
 +
@@ -154,14 +161,15 @@ Or
 +
 [source,terminal]
 ----
-$ oc delete pvc <pvc-name> <1>
+$ oc delete pvc <pvc-name>
 ----
-<1> Name of the PVC that you want to delete.
+Where ``<pvc-name>`` is the name of the PVC that you want to delete.
 
 . Now that the Volume Attributes Class is no longer being used by any PVC, delete the Volume Attributes Class by running the following command:
 +
 [source,terminal]
 ----
-$ oc delete vac <vac-name> <1>
+$ oc delete vac <vac-name>
 ----
-<1> Name of the Volume Attributes Class that you want to delete.
++
+Where `<pvc-name>` is the name of the Volume Attributes Class that you want to delete.
