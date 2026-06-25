@@ -6,7 +6,8 @@
 [id="persistent-storage-csi-cloning-overview_{context}"]
 = Overview of CSI volume cloning
 
-A Container Storage Interface (CSI) volume clone is a duplicate of an existing persistent volume at a particular point in time.
+[role="_abstract"]
+Container Storage Interface (CSI) volume clones are point-in-time duplicates of existing persistent volumes. Cloning is more efficient than snapshots to create a copy. Specify an existing persistent volume claim (PVC) as the source to clone volumes in a namespace using supported CSI drivers.
 
 Volume cloning is similar to volume snapshots, although it is more efficient. For example, a cluster administrator can duplicate a cluster volume by creating another instance of the existing cluster volume.
 

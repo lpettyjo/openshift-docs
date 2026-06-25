@@ -6,8 +6,15 @@ include::_attributes/common-attributes.adoc[]
 
 toc::[]
 
-Volume cloning duplicates an existing persistent volume to help protect against data loss in {product-title}. This feature is only available with supported Container Storage Interface (CSI) drivers. You should be familiar with xref:../../storage/understanding-persistent-storage.adoc#persistent-volumes_understanding-persistent-storage[persistent volumes] before you provision a CSI volume clone.
+[role="_abstract"]
+Volume cloning duplicates existing persistent volumes to create independent copies for data protection, testing, or deployment. This Container Storage Interface (CSI) feature allows creating new volumes from existing data without manual copying or backup restoration.
+
+Before you provision a CSI volume clone, you should be familiar with persistent volumes. For information about persistent volumes, see _Understanding persistent volumes_ under _Additional resources_.
 
 include::modules/persistent-storage-csi-cloning-overview.adoc[leveloffset=+1]
 
 include::modules/persistent-storage-csi-cloning-provisioning.adoc[leveloffset=+1]
+
+[role="_additional-resources"]
+.Additional resources
+* xref:../../storage/understanding-persistent-storage.adoc#persistent-volumes_understanding-persistent-storage[Understanding persistent volumes]
