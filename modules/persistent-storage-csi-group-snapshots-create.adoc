@@ -7,6 +7,8 @@
 = Creating a volume group snapshot
 
 [role="_abstract"]
+Create a `VolumeGroupSnapshot` object to capture point-in-time copies of multiple persistent volume claims (PVCs). Label the PVCs to include, specify the `VolumeGroupSnapshotClass`, and use a selector to reference them. Individual `VolumeSnapshot` objects are created automatically for each PVC.
+
 When you create a `VolumeGroupSnapshot` object, {product-title} creates a volume group snapshot.
 
 .Prerequisites
@@ -18,8 +20,6 @@ When you create a `VolumeGroupSnapshot` object, {product-title} creates a volume
 
 .Procedure
 
-To create a volume group snapshot:
-
 . Locate (or create) the PVCs that you want to include in the volume group snapshot:
 +
 [source, terminal]
@@ -27,7 +27,7 @@ To create a volume group snapshot:
 $ oc get pvc
 ----
 +
-.Example command output
+.Example
 +
 [source, terminal]
 ----
@@ -73,22 +73,28 @@ In this example, you are labeling PVC "pvc-0" and "pvc-1" to belong to group "my
 [source, yaml]
 ----
 apiVersion: groupsnapshot.storage.k8s.io/v1beta2
-kind: VolumeGroupSnapshot <1>
+kind: VolumeGroupSnapshot
 metadata:
-  name: <volume-group-snapshot-name> <2>
-  namespace: <namespace> <3>
+  name: <volume-group-snapshot-name>
+  namespace: <namespace>
 spec:
-  volumeGroupSnapshotClassName: <volume-group-snapshot-class-name> <4>
+  volumeGroupSnapshotClassName: <volume-group-snapshot-class-name>
   source:
     selector:
       matchLabels:
-        group: myGroup <5>
+        group: myGroup
 ----
-<1> The `VolumeGroupSnapshot` object requests creation of a volume group snapshot for multiple PVCs.
-<2> Name of the volume group snapshot.
-<3> Namespace for the volume group snapshot.
-<4> The `VolumeGroupSnapshotClass` name. This object is created by the administrator and describes how volume group snapshots should be created.
-<5> The name of the label used to group the desired PVCs for the snapshot. In this example, it is "myGroup".
+Where:
++
+* `kind`: The `VolumeGroupSnapshot` object requests creation of a volume group snapshot for multiple PVCs.
+
+* `metadata.name`: Name of the volume group snapshot.
+
+* `metadata.namespace`: Namespace for the volume group snapshot.
+
+* `spec.volumeGroupSnapshotClassName`: The `VolumeGroupSnapshotClass` name. This object is created by the administrator and describes how volume group snapshots should be created.
+
+* `spec.source.selector.matchLabels.group`: The name of the label used to group the required PVCs for the snapshot. In this example, it is "myGroup".
 
 .. Create the `VolumeGroupSnapshot` object by running the following command:
 +
@@ -102,7 +108,7 @@ Individual volume snapshots are created according to how many PVCs were specifie
 
 These individual volume snapshots are named with the following format: <hash of VolumeGroupSnaphotContentUUID+volumeHandle>:
 
-.Example individual volume snapshot
+.Example
 [source, yaml]
 ----
 apiVersion: snapshot.storage.k8s.io/v1

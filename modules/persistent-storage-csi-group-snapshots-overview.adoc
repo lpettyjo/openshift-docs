@@ -6,6 +6,9 @@
 [id="persistent-storage-csi-group-snapshots-overview_{context}"]
 = Overview of CSI volume group snapshots
 
+[role="_abstract"]
+Volume group snapshots capture point-in-time copies of multiple persistent volume claims using label selectors. Three API objects manage snapshots: VolumeGroupSnapshot, VolumeGroupSnapshotContent, and VolumeGroupSnapshotClass. Container Storage Interface driver support is required.
+
 A _snapshot_ represents the state of the storage volume in a cluster at a particular point in time. Volume snapshots can be used to provision a new volume. 
 
 A _volume group snapshot_ uses a label selector to group multiple persistent volume claims for snapshotting. A volume group snapshot represents copies from multiple volumes that are taken at the same point-in-time. This can be useful for applications that contain multiple volumes.
