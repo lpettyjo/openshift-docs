@@ -3,13 +3,11 @@
 // * storage/container_storage_interface/persistent-storage-csi-snapshots.adoc
 
 :_mod-docs-content-type: PROCEDURE
-[id="persistent-storage-csi-snapshots-create_{context}"]
-= Dynamically creating a volume snapshot
+[id="persistent-storage-csi-snapshots-create-static_{context}"]
+= Statically creating a volume snapshot
 
 [role="_abstract"]
-To create a point-in-time backup of a persistent volume claim (PVC), dynamically provision a volume snapshot by defining a VolumeSnapshotClass and VolumeSnapshot that automate the snapshot creation.
-
-When you create a `VolumeSnapshot` object, {product-title} creates a volume snapshot.
+To make a pre-existing storage snapshot available in {product-title}, manually create a volume snapshot that references the existing snapshot content by name.
 
 .Prerequisites
 * Logged in to a running {product-title} cluster.
@@ -51,32 +49,27 @@ Depending on the driver that you used to configure persistent storage, additiona
 $ oc create -f volumesnapshotclass.yaml
 ----
 
-. Create a `VolumeSnapshot` object:
+. Provide a value for the `volumeSnapshotContentName` parameter as the source for the snapshot:
 +
-.Example volumesnapshot-dynamic.yaml
+.Example volumesnapshot-manual.yaml
 [source,yaml]
 ----
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: mysnap
+  name: snapshot-demo
 spec:
-  volumeSnapshotClassName: csi-hostpath-snap
   source:
-    persistentVolumeClaimName: myclaim
+    volumeSnapshotContentName: mycontent
 ----
 +
-Where:
-
-* `spec.volumeSnapshotClassName`: The request for a particular class by the volume snapshot. If the `volumeSnapshotClassName` setting is absent and there is a default volume snapshot class, a snapshot is created with the default volume snapshot class name. But if the field is absent and no default volume snapshot class exists, then no snapshot is created.
-
-* `spec.source.persistentVolumeClaimName`: The name of the `PersistentVolumeClaim` object bound to a persistent volume. This defines what you want to create a snapshot of. Required for dynamically provisioning a snapshot.
+Where `spec.source.volumeSnapshotContentName` is required for pre-provisioned snapshots.
 
 . Create the object you saved in the previous step by entering the following command:
 +
 [source,terminal]
 ----
-$ oc create -f volumesnapshot-dynamic.yaml
+$ oc create -f volumesnapshot-manual.yaml
 ----
 
 .Verification
@@ -126,4 +119,4 @@ $ oc get volumesnapshotcontent
 +
 The pointer to the actual content is displayed. If the `boundVolumeSnapshotContentName` field is populated, a `VolumeSnapshotContent` object exists and the snapshot was created.
 
-. To verify that the snapshot is ready, confirm that the `VolumeSnapshot` object has `readyToUse: true`
+. To verify that the snapshot is ready, confirm that the `VolumeSnapshot` object has `readyToUse: true`.

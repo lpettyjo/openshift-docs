@@ -6,6 +6,9 @@
 [id="persistent-storage-csi-snapshots-operator_{context}"]
 = About the CSI Snapshot Controller Operator
 
+[role="_abstract"]
+You can manage volume snapshots in {product-title} by using the CSI Snapshot Controller Operator's custom resource definitions (CRDs) for snapshot requests, storage, and configuration.
+
 The Container Storage Interface (CSI) Snapshot Controller Operator runs in the `openshift-cluster-storage-operator` namespace. It is installed by the Cluster Version Operator (CVO) in all clusters by default.
 
 The CSI Snapshot Controller Operator installs the CSI snapshot controller, which runs in the `openshift-cluster-storage-operator` namespace.
@@ -61,7 +64,8 @@ driver: pd.csi.storage.gke.io
 parameters:
   snapshot-type: images
 ----
-+
+Where:
+
 * `metadata.name:csi-gce-pd-vsc-images`: Name for the non-default images volume snapshot class.
 
 * `parameters: snapshot-type: images`: Defines the snapshot as a "golden image" or a bootable template, rather than the standard disk backup.
