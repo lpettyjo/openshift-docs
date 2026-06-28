@@ -8,6 +8,9 @@
 [id="persistent-storage-csi-azure-disk-perf-plus-limits_{context}"]
 = Limitations
 
+[role="_abstract"]
+To successfully enable performance plus, verify that your disk configuration meets the required type, size, and provisioning criteria before attempting to use this feature.
+
 Performance plus for Azure Disk has the following limitations:
 
 * Can be enabled only on Standard HDD, Standard SSD, and Premium SSD managed disks that are 513 GiB or larger.

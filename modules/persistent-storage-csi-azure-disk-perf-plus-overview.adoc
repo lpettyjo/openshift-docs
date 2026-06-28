@@ -8,6 +8,7 @@
 [id="persistent-storage-csi-azure-disk-perf-plus-overview_{context}"]
 = Overview
 
+[role="_abstract"]
 By enabling performance plus, the Input/Output Operations Per Second (IOPS) and throughput limits can be increased for the following types of disks that are 513 GiB, and larger:
 
 * Azure Premium solid-state drives (SSD)
@@ -15,3 +16,5 @@ By enabling performance plus, the Input/Output Operations Per Second (IOPS) and 
 * Standard SSDs
 
 * Standard hard disk drives (HDD)
+
+To see what the increased limits are for IOPS and throughput, consult the columns that begin with *Expanded* in the tables in _Scalability and performance targets for VM disks_ under _Additional resources_.
