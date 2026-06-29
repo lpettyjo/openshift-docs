@@ -8,6 +8,7 @@
 [id="persistent-storage-csi-olm-operator-install_{context}"]
 = Installing the {FeatureName} CSI Driver Operator
 
+[role="_abstract"]
 The {FeatureName} CSI Driver Operator (a Red{nbsp}Hat Operator) is not installed in {product-title} by default. Use the following procedure to install and configure the {FeatureName} CSI Driver Operator in your cluster.
 
 // The following ifeval and restricted ifdef statements exclude STS and a note about avoiding
@@ -29,7 +30,6 @@ endif::[]
 * Access to the {product-title} web console.
 
 .Procedure
-To install the {FeatureName} CSI Driver Operator from the web console:
 
 . Log in to the web console.
 
@@ -79,3 +79,6 @@ endif::[]
 ifeval::["{context}" == "rosa-persistent-storage-aws-efs-csi"]
 :!restricted:
 endif::[]
+
+.Next steps
+Install the AWS EFS CSI Driver.
