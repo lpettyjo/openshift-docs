@@ -7,6 +7,9 @@
 [id="vsphere-change-max-snapshot_{context}"]
 = Changing the maximum number of snapshots for vSphere
 
+[role="_abstract"]
+To customize vSphere snapshot retention limits, configure the maximum number of snapshots per volume globally or for specific datastore types to balance capacity and performance.
+
 The default maximum number of snapshots per volume in vSphere Container Storage Interface (CSI) is 3. You can change the maximum number up to 32 per volume.
 
 However, be aware that increasing the snapshot maximum involves a performance trade off, so for better performance use only 2 to 3 snapshots per volume.
@@ -27,7 +30,6 @@ $ oc -n openshift-cluster-csi-drivers get secret/vsphere-csi-config-secret -o js
 ----
 +
 .Example output
-+
 [source, terminal]
 ----
 # Labels with topology values are added dynamically via operator
@@ -92,7 +94,6 @@ $ oc -n openshift-cluster-csi-drivers get secret/vsphere-csi-config-secret -o js
 ----
 +
 .Example output
-+
 [source, terminal]
 ----
 # Labels with topology values are added dynamically via operator
@@ -108,6 +109,7 @@ user                    = "xxxxxxxx@devcluster.openshift.com"
 migration-datastore-url = ds:///vmfs/volumes/vsan:52c842f232751e0d-3253aadeac21ca82/
 
 [Snapshot]
-global-max-snapshots-per-block-volume = 10 <1>
+global-max-snapshots-per-block-volume = 10
 ----
-<1> `global-max-snapshots-per-block-volume` is now set to 10.
++
+Where under "Snapshot", `global-max-snapshots-per-block-volume` is now set to 10.
