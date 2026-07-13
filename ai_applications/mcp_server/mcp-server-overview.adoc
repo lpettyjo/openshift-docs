@@ -24,7 +24,10 @@ include::modules/ai-app-mcp-server-prompting-workflow.adoc[leveloffset=+1]
 
 include::modules/ai-app-mcp-server-install.adoc[leveloffset=+1]
 
-include::modules/ai-app-mcp-server-install-helm.adoc[leveloffset=+2]
+include::modules/ai-app-mcp-server-install-lifecycle-operator.adoc[leveloffset=+2]
+[role="_additional-resources"]
+.Additional resources
+* ???RHOAI link???
 
 include::modules/ai-app-mcp-server-connect-client.adoc[leveloffset=+2]
 

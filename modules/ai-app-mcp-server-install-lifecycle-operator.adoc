@@ -1,0 +1,16 @@
+// Module included in the following assemblies:
+//
+// * ai_applications/mcp_server/mcp-server-overview.adoc
+
+:_mod-docs-content-type: PROCEDURE
+[id="ai-app-mcp-server-install-lifecycle-operator_{context}"]
+= Install the MCP server
+
+[role="_abstract"]
+To install the Model Context Protocol (MCP) server for Red Hat {product-title} feature, install the MCP server for Red Hat {product-title} by using Lifecycle Operator.
+
+.Procedure
+* For information about installing using Lifecycle operator, see "_???RHOAI link???"".
+
+:FeatureName: Lifecycle Operator
+include::snippets/technology-preview.adoc[]

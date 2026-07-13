@@ -12,7 +12,7 @@ To install the Model Context Protocol (MCP) server for Red Hat {product-title} f
 .Prerequisites
 
 * Access to OpenShift console with admin rights.
-* The MCP server Helm chart is installed.
+* The MCP server is installed.
 * MCP-compatible client connected.
 * MCP gateway is installed and verified.
 
